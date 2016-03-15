@@ -1,0 +1,10 @@
+#!/home/luiz/Documents/UnB/Mestrado/CodSinais/writebits/.venv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'writebits','console_scripts','main-test'
+__requires__ = 'writebits'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('writebits', 'console_scripts', 'main-test')()
+    )
