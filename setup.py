@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 install_requires = [
     'bitarray>=0.8.1',
-    # 'writebits',
+    'ipdb>=0.9.0'
 ]
 
 
@@ -18,13 +18,13 @@ setup(
     version='0.1.0',
     author='Luiz Oliveira',
     author_email='ziuloliveira@gmail.com',
-    url='https://github.com/Ziul/bot_howdoi',
+    url='https://gitlab.com/Ziul/writebits/',
     entry_points={
         'console_scripts': [
             'main-run = main:main',
-            'main-test = main:test',
+            # 'main-test = main:test',
         ]},
-    description='A Telegram bot',
+    description='A program to write bit into memory or file',
     long_description=__doc__,
     license='GPLv3',
     package_dir={'': 'src'},

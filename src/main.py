@@ -32,16 +32,13 @@ class Bitset(bitarray):
                 pass
         a = bitarray()
         a.encode(self.code, arg)
-        # arg = str(a).replace('bitarray(\'', '')
-        # arg = arg.replace('\')', '')
-        # super(Bitset, self).extend(arg)
+
         super(Bitset, self).extend(a)
 
     def to_file(self):
         if (len(self) % 8):
             # self.pack()
             self.fill()
-        # self.memory = memoryview(self)
         bits = self.__str__()
         print ">>: ", bits, '(', len(bits), ')'
         with open(self.name, "wb") as f:
@@ -59,14 +56,13 @@ class Bitset(bitarray):
 
     def flush(self):
         self.fill()
-        self.to_file()
+        self.memory = memoryview(self)
+        # self.to_file()
 
     def pack(self):
         size = 8 - (len(self) % 8)
         for i in range(size):
             self.insert(0, False)
-        # while(len(self) % 8) > 0:
-        #     self.pack()
 
     def __str__(self):
         output = super(Bitset, self).__str__()
@@ -85,7 +81,7 @@ def main():
     print '<<: ', a, '(', len(a), ')'
     a.to_file()
     v = memoryview(a)
-    import ipdb
+    # import ipdb
     # ipdb.set_trace()
     print v.tobytes()
 
