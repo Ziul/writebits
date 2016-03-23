@@ -90,6 +90,7 @@ ENV/
 
 *.txt
 *.log
+*.bin
 
 ### Linux ###
 *~

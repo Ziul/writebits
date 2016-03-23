@@ -3,8 +3,11 @@ from bitarray import bitarray
 import re
 import string
 import struct
-from array import array
+from bitargs import _parser
 # xxd  -b file.txt
+
+global _options
+global _args
 
 
 class Bitset(bitarray):
@@ -16,7 +19,7 @@ class Bitset(bitarray):
         if 'name' in arg.keys():
             self.name = arg['name']
         else:
-            self.name = 'file.txt'
+            self.name = 'file.bin'
 
         # encode ASCII table
         for x in string.printable:
@@ -57,7 +60,6 @@ class Bitset(bitarray):
     def flush(self):
         self.fill()
         self.memory = memoryview(self)
-        # self.to_file()
 
     def pack(self):
         size = 8 - (len(self) % 8)
@@ -72,17 +74,17 @@ class Bitset(bitarray):
 
 
 def main():
+
+    (_options, _args) = _parser.parse_args()
     a = Bitset()
-    data = raw_input('entrada: ')
-    while(len(data)):
-        a.push(data)
-        data = raw_input('entrada: ')
+    a.name = _options.filename
+    if not _args:
+        return
+    a.extend(_args[0])
 
     print '<<: ', a, '(', len(a), ')'
     a.to_file()
     v = memoryview(a)
-    # import ipdb
-    # ipdb.set_trace()
     print v.tobytes()
 
 

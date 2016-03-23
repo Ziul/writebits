@@ -9,7 +9,8 @@ from setuptools import setup, find_packages
 
 install_requires = [
     'bitarray>=0.8.1',
-    'ipdb>=0.9.0'
+    'ipdb>=0.9.0',
+    'optparse-pretty>=0.1.1'
 ]
 
 
@@ -21,7 +22,8 @@ setup(
     url='https://gitlab.com/Ziul/writebits/',
     entry_points={
         'console_scripts': [
-            'main-run = main:main',
+            'writebits = main:main',
+            'readbits = main:main',
             # 'main-test = main:test',
         ]},
     description='A program to write bit into memory or file',
