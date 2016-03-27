@@ -12,6 +12,7 @@ global _args
 
 class Bitset(bitarray):
     memory = None
+    verbose = True
 
     def __init__(self, **arg):
         super(Bitset, self).__init__(**arg)
@@ -43,7 +44,8 @@ class Bitset(bitarray):
             # self.pack()
             self.fill()
         bits = self.__str__()
-        print ">>: ", bits, '(', len(bits), ')'
+        if self.verbose:
+            print(">>: ", bits, '(', len(bits), ')')
         with open(self.name, "wb") as f:
             for i in self.chunks(bits, 8):
                 # int_value = int(i[::-1], base=2)
@@ -78,14 +80,18 @@ def main():
     (_options, _args) = _parser.parse_args()
     a = Bitset()
     a.name = _options.filename
+    a.verbose = _options.verbose
     if not _args:
+        _parser.print_help()
         return
     a.extend(_args[0])
 
-    print '<<: ', a, '(', len(a), ')'
+    if _options.verbose:
+        print('<<: ', a, '(', len(a), ')')
     a.to_file()
     v = memoryview(a)
-    print v.tobytes()
+    if _options.verbose:
+        print(v.tobytes())
 
 
 def test():
