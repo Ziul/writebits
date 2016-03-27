@@ -25,7 +25,7 @@ class Bitset(bitarray):
         # encode ASCII table
         for x in string.printable:
             self.code[x] = bitarray(bin(ord(x)).split('0b')[1].rjust(8, '0'))
-        self.checker = re.compile(ur'([^01]+)')
+        # self.checker = re.compile(ur'([^01]+)')
 
     def push(self, arg):
         if (arg[0:2] == '0b') and len(arg) > 2:
@@ -56,7 +56,7 @@ class Bitset(bitarray):
 
     def chunks(self, l, n):
         """Yield successive n-sized chunks from l."""
-        for i in xrange(0, len(l), n):
+        for i in range(0, len(l), n):
             yield l[i:i + n]
 
     def flush(self):
@@ -89,9 +89,6 @@ def main():
     if _options.verbose:
         print('<<: ', a, '(', len(a), ')')
     a.to_file()
-    v = memoryview(a)
-    if _options.verbose:
-        print(v.tobytes())
 
 
 def test():
