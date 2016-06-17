@@ -3,7 +3,7 @@
 """
 writebits
 ===================
-A Telegram bot
+Write some bits to disk
 """
 from setuptools import setup, find_packages
 
@@ -19,7 +19,7 @@ setup(
     version='0.1.0',
     author='Luiz Oliveira',
     author_email='ziuloliveira@gmail.com',
-    url='https://gitlab.com/Ziul/writebits/',
+    url='https://github.com/Ziul/writebits/',
     entry_points={
         'console_scripts': [
             'writebits = main:main',

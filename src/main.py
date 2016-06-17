@@ -6,19 +6,17 @@ import struct
 from bitargs import _parser
 # xxd  -b file.txt
 
-global _options
-global _args
+(_options, _args) = _parser.parse_args()
 
 
 class Bitset(bitarray):
     memory = None
 
-    def __init__(self, name='file.bin', verbose=True, **arg):
-        super(Bitset, self).__init__(name='file.bin', verbose=True, **arg)
+    def __init__(self, name='file.bin', verbose=True):
+        super(Bitset, self).__init__(name='file.bin', verbose=True)
         self.code = {}
         self.verbose = verbose
         self.name = name
-        self.__dict__.update(arg)
 
         # encode ASCII table
         for x in string.printable:
