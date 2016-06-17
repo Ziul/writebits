@@ -1,1 +1,1 @@
-from main import Bitset
+from writebits import Bitset

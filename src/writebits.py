@@ -6,14 +6,12 @@ import struct
 from bitargs import _parser
 # xxd  -b file.txt
 
-(_options, _args) = _parser.parse_args()
-
 
 class Bitset(bitarray):
     memory = None
 
     def __init__(self, name='file.bin', verbose=True):
-        super(Bitset, self).__init__(name='file.bin', verbose=True)
+        super(Bitset, self).__init__()
         self.code = {}
         self.verbose = verbose
         self.name = name
