@@ -12,14 +12,13 @@ global _args
 
 class Bitset(bitarray):
     memory = None
-    verbose = True
 
-    def __init__(self, arg):
-        super(Bitset, self).__init__(arg)
+    def __init__(self, name='file.bin', verbose=True, **arg):
+        super(Bitset, self).__init__(name='file.bin', verbose=True, **arg)
         self.code = {}
+        self.verbose = verbose
+        self.name = name
         self.__dict__.update(arg)
-        if 'name' not in arg.keys():
-            self.name = 'file.bin'
 
         # encode ASCII table
         for x in string.printable:
