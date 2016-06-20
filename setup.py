@@ -22,8 +22,8 @@ setup(
     url='https://github.com/Ziul/writebits/',
     entry_points={
         'console_scripts': [
-            'writebits = main:main',
-            'readbits = main:main',
+            'writebits = writebits:main',
+            'readbits = writebits:main',
             # 'main-test = main:test',
         ]},
     description='A program to write bit into memory or file',
