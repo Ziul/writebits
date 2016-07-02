@@ -22,16 +22,14 @@ class Bitset(bitarray):
         # self.checker = re.compile(ur'([^01]+)')
 
     def push(self, arg):
-        if (arg[0:2] == '0b') and len(arg) > 2:
-            try:
-                super(Bitset, self).extend(arg.split('0b')[1])
-                return
-            except Exception:
-                pass
-        a = bitarray()
-        a.encode(self.code, arg)
+        if type(arg) == int:
+            if arg < 0:
+                arg = (1 << 8) + arg
+            arg = '{:b}'.format(arg)
+        elif type(arg) != str:
+            raise Exception('Format not supported')
 
-        super(Bitset, self).extend(a)
+        super(Bitset, self).extend(arg)
 
     def to_file(self):
         if (len(self) % 8):
@@ -78,7 +76,10 @@ def main():
     if not _args:
         _parser.print_help()
         return
-    a.extend(_args[0])
+    result = re.findall('[^10]', _args[0])
+    if len(result) != 0:
+        _args[0] = int(_args[0])
+    a.push(_args[0])
 
     if _options.verbose:
         print('<<: ', a, '(', len(a), ')')
