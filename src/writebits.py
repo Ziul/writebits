@@ -24,7 +24,7 @@ class Bitset(bitarray):
     def push(self, arg):
         if type(arg) == int:
             if arg < 0:
-                arg = (1 << 8) + arg
+                arg = (1 << 16) + arg
             arg = '{:b}'.format(arg)
         elif type(arg) != str:
             raise Exception('Format not supported')
